@@ -1,0 +1,65 @@
+/**
+ * -----------------------------------------------------
+ * Assignment 0
+ * Question: Part 2
+ * Written by: Fadoua Doghmane ID# and Tanya So Tin Yan ID#40208954
+ * -----------------------------------------------------
+ * @author Fadoua Doghmane ID# and Tanya So Tin Yan ID#40208954
+ * COMP249
+ * Assignment    #0
+ * Due Date      Friday, February 4, 2022
+ * 
+ * General explanation of what the program does: 
+ * */
+
+import java.util.Scanner;
+
+
+public class PlayLadderAndSnake {
+
+	public static void main(String[] args) {
+		
+
+		
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println("++                                             ++");
+		System.out.println("+  WELCOME TO THE BOARD GAME: LADDER AND SNAKE  +");
+		System.out.println("++                                             ++");
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++");
+
+		Scanner scanner = new Scanner (System.in);
+		System.out.print("\nPlease enter the number of players: ");
+		int NBofPlayers = scanner.nextInt();
+		
+		//nb of players must be between 2 and 4
+		
+		while (NBofPlayers !=2 && NBofPlayers !=3 && NBofPlayers !=4)
+		{
+			System.out.println("\nIn order to play Ladder and Snake, there must be at least 2 players and at most 4 players.");
+			System.out.print("\nPlease enter a new number! ");
+			NBofPlayers = scanner.nextInt();
+		}
+		
+		LadderAndSnake play = new LadderAndSnake (NBofPlayers);
+		
+		play.board_map();
+		play.decidOrder(NBofPlayers);
+		play.checkOder();
+		play.playing_Snk();
+		
+		System.out.println();
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println("++++                                                                         ++++");
+		System.out.println("++                            THANK YOU FOR PLAYING                            ++");
+		System.out.println("++++                                                                         ++++");
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		
+		System.out.println("  ___     ___     ___     ___     ___     ___     ___     ___      ");
+		System.out.println(" // \\\\   // \\\\   // \\\\   // \\\\   // \\\\   // \\\\   // \\\\   // \\\\   ");
+		System.out.println("//   \\\\_//   \\\\_//   \\\\_//   \\\\_//   \\\\_//   \\\\_//   \\\\_//   \\@~~");
+		
+		
+		scanner.close();
+	}
+
+}
