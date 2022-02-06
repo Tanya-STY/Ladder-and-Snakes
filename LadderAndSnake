@@ -6,10 +6,7 @@ public class LadderAndSnake {
 	
 	private int NBofPlayers;
 	String temp = "~~";
-	String play1;
-	String play2;
-	String play3;
-	String play4;
+	String names;
 	Scanner key = new Scanner(System.in);
 	
 	
@@ -162,85 +159,61 @@ public class LadderAndSnake {
 		
 		for (int b = 0; b < NBofPlayers; b++) {
 		
-		//	playerArray[b].setNameOfPlayer("~~");
-			 
-		/*System.out.print("Please enter #" + (b + 1) + " Player's name: ");
-	            playerArray [b] = new players(null, b, b, false, false);
-	            
-	            temp = key.next();
-	            playerArray[b].setNameOfPlayer("~~");
-	            
-	            if (b == 0)
-	            {
-	            	playerArray[b].setNameOfPlayer("\uD83D\uDE00");
-	            System.out.print('\t' + temp + " will be assigned to: " + "\uD83D\uDE00" );
-	            }
-	            
-	            if (b == 1)
-	            {
-	            	playerArray[b].setNameOfPlayer("\uD83D\uDE08");
-	            System.out.print('\t' + temp + " will be assigned to: " + "\uD83D\uDE08" );
-	            }
-	            
-	            if (b == 2)
-	            {
-	            	playerArray[b].setNameOfPlayer("\uD83D\uDC79");
-	            System.out.print('\t' + temp + " will be assigned to: " + "\uD83D\uDC79" );
-	            }
-	            
-	            if (b == 3)
-	            {
-	            	playerArray[b].setNameOfPlayer("\uD83E\uDD20");
-	            System.out.print('\t' + temp + " will be assigned to: " + "\uD83E\uDD20");
-	            }
-	            
-	     */
 			
 			if(b == 0)
 			{
 				System.out.print("Please enter #" + (b + 1) + " Player's name: ");
-	            playerArray [0] = new players(null, b, b, false, false);
 	            
-	            play1 = key.next();
 	            
-	            playerArray[0].setNameOfPlayer(play1);
-	            System.out.print('\t' + play1 + " will be assigned to: " + "\uD83D\uDE00");
+	            names = key.next();
+	            
+	            playerArray [0] = new players(names, "\uD83D\uDE00", b, b, false, false);
+	            
+	            playerArray[0].setNames(names);
+	            playerArray[0].setNameOfPlayer("\uD83D\uDE00");
+	            System.out.print('\t' + playerArray[b].getNames() + " will be assigned to: " + "\uD83D\uDE00");
 	            
 			}
 			
 			if(b == 1)
 			{
 				System.out.print("Please enter #" + (b + 1) + " Player's name: ");
-	            playerArray [1] = new players(null, b, b, false, false);
 	            
-	            play2 = key.next();
 	            
-	            playerArray[1].setNameOfPlayer(play2);
-	            System.out.print('\t' + play2 + " will be assigned to: " + "\uD83D\uDE08" );
+	            names = key.next();
+	            
+	            playerArray [1] = new players(names, "\uD83D\uDE08", b, b, false, false);
+	            playerArray[1].setNames(names);
+	            playerArray[1].setNameOfPlayer("\uD83D\uDE08");
+	            System.out.print('\t' + playerArray[b].getNames() + " will be assigned to: " + "\uD83D\uDE08" );
 	            
 			}
 			
 			if(b == 2)
 			{
 				System.out.print("Please enter #" + (b + 1) + " Player's name: ");
-	            playerArray [2] = new players(null, b, b, false, false);
 	            
-	            play3 = key.next();
 	            
-	            playerArray[2].setNameOfPlayer(play3);
-	            System.out.print('\t' + play3 + " will be assigned to: " + "\uD83D\uDC79" );
+	            names = key.next();
+	            
+	            playerArray [2] = new players(names, "\uD83D\uDC79", b, b, false, false);
+	            playerArray[2].setNames(names);
+	            playerArray[2].setNameOfPlayer("\uD83D\uDC79");
+	            System.out.print('\t' + playerArray[b].getNames() + " will be assigned to: " + "\uD83D\uDC79" );
 	            
 			}
 			
 			if(b == 3)
 			{
 				System.out.print("Please enter #" + (b + 1) + " Player's name: ");
-	            playerArray [3] = new players(null, b, b, false, false);
 	            
-	            play4 = key.next();
 	            
-	            playerArray[3].setNameOfPlayer(play4);
-	            System.out.print('\t' + play4 + " will be assigned to: " + "\uD83E\uDD20" );
+	            names = key.next();
+	            
+	            playerArray [3] = new players(names, "\uD83E\uDD20", b, b, false, false);
+	            playerArray[3].setNames(names);
+	            playerArray[3].setNameOfPlayer("\uD83E\uDD20");
+	            System.out.print('\t' + playerArray[b].getNames() + " will be assigned to: " + "\uD83E\uDD20" );
 	            
 			}
 
@@ -263,25 +236,23 @@ public class LadderAndSnake {
 	
 	public void setPlayerArray()
 	{
-		playerArray[0] = new players ("\uD83D\uDE00", 0, 0, false, false);
-		playerArray[1] = new players ("\uD83D\uDE08", 0, 0, false, false);
-		playerArray[2] = new players ("\uD83D\uDC79", 0, 0, false, false);
-		playerArray[3] = new players ("\uD83E\uDD20", 0, 0, false, false);
+		for(int b=0; b<NBofPlayers ; b++)
+			playerArray[b] = new players (playerArray[b].getNames(), playerArray[b].getNameOfPlayer(), 0, 0, false, false);
+		//playerArray[0] = new players (playerArray[0].getNames(),"\uD83D\uDE00", 0, 0, false, false);
+		//playerArray[1] = new players (playerArray[1].getNames(),"\uD83D\uDE08", 0, 0, false, false);
+		//playerArray[2] = new players (playerArray[2].getNames(),"\uD83D\uDC79", 0, 0, false, false);
+		//playerArray[3] = new players (playerArray[3].getNames(),"\uD83E\uDD20", 0, 0, false, false);
 		
 		
 		//this player is not used in the game but only for the method "play_order"
-		playerArray[4] = new players ("CHECK ORDER", 0, 0, false, false);
+		playerArray[4] = new players (null,"CHECK ORDER", 0, 0, false, false);
 	}
 	
 	/**
 	 * @return generate a random number between 1 and 6
 	 * */
 	
-	/*public int rollDice()
-	{
-		int dice_nb;
-		return dice_nb = 1 + (int)(Math.random() * 6);
-	}*/
+	
 	
 	private static int rollDice() {
         int dice_nb;
@@ -301,246 +272,124 @@ public class LadderAndSnake {
 	 * @param NBofPlayers
 	 * */
 	
-	public void player_order (int NBofPlayers)
-	{
+	public void decidOrder(int numberOfPlayers) {
 		setPlayerArray();
+		System.out.println("Each player must throw the dice to obtain the largest possible number to determine the order in which the players will play!");
+		int counter = 1;
+		for (int i = 1; i < numberOfPlayers + 1; i++) {
 
-		System.out.print("Each player must throw the dice to obtain the largest possible number to determine the order in which the players will play!");
-		//int count = 1;
-		
-		for(int b=1; b < NBofPlayers + 1; b++)
-		{
-			System.out.println();
-			if(b==1)
-			System.out.print("\n~~ It is " + play1 + "'s turn.");
+			System.out.println("\nIt is " + playerArray[i-1].getNames() + "'s turn");
+
+			System.out.print("  -> Please roll the dice (Click any button.)");
 			
-			if(b==2)
-				System.out.print("\n~~ It is " + play2 + "'s turn.");
+			int randomNum = rollDice();
 			
-			if(b==3)
-				System.out.print("\n~~ It is " + play3 + "'s turn.");
-			
-			if(b==4)
-				System.out.print("\n~~ It is " + play4 + "'s turn.");
-			
-			System.out.print("\n  -> Please roll the dice (Click any button.)");
-			//String rolling = key.nextLine();
-			
-			int rand_num = rollDice();
-			
-			if(b==1)
-				System.out.print("\t"+ play1 + " rolled the dice and got " + rand_num +".");
-				
-			if(b==2)
-				System.out.print("\t"+ play2 + " rolled the dice and got " + rand_num +".");
-				
-			if(b==3)
-				System.out.print("\t"+ play3 + " rolled the dice and got " + rand_num +".");
-				
-			if(b==4)
-				System.out.print("\t"+ play4 + " rolled the dice and got " + rand_num +".");
-			
-			
-			
-			if (b == 1)
-			{
-				playerArray[0].setNumOnDice(rand_num);
+			System.out.print("\t ~~> " + playerArray[i-1].getNames() + " rolled the dice and got " + randomNum + "\n");
+
+			//Random rand = new Random();
+
+			//int randomNum = rollDice();
+					//rand.nextInt(6) + 1;
+			//System.out.println("*" + randomNum + "*\n");
+
+			if (i == 1) {
+				playerArray[0].setNumOnDice(randomNum);
+			} else if (i == 2) {
+				playerArray[1].setNumOnDice(randomNum);
+			} else if (i == 3) {
+				playerArray[2].setNumOnDice(randomNum);
+			} else if (i == 4) {
+				playerArray[3].setNumOnDice(randomNum);
 			}
-			if (b == 2)
-			{
-				playerArray[1].setNumOnDice(rand_num);
-			}
-			if (b == 3)
-			{
-				playerArray[2].setNumOnDice(rand_num);
-			}
-			if (b == 4)
-			{
-				playerArray[3].setNumOnDice(rand_num);
-			}
+			counter++;
 			
-	//	count++;
 		}
 		
-		/*for(int b=0; b<NBofPlayers ; b++)
-		{
-			System.out.println("\n~~ It is " + playerArray[b].getNameOfPlayer() + "'s turn." );
-			System.out.print("\tPlease roll the dice (click any button).");
-			
-			int rand_num = rollDice();
-			
-			System.out.println('\t' + playerArray[b].getNameOfPlayer() + " rolled the dice and got " + rand_num + ".");
-		
-			if (b == 1)
-			{
-				playerArray[0].setNumOnDice(rand_num);
-			}
-			if (b == 2)
-			{
-				playerArray[1].setNumOnDice(rand_num);
-			}
-			if (b == 3)
-			{
-				playerArray[2].setNumOnDice(rand_num);
-			}
-			if (b == 4)
-			{
-				playerArray[3].setNumOnDice(rand_num);
-			}
-		}*/	
-		
-		
-	/*	for(int b=0; b<NBofPlayers ; b++)
-		{
-			System.out.println("\n~~ It is " + playerArray[b].getNameOfPlayer() + "'s turn." );
-			System.out.print("\tPlease roll the dice (press 'ENTER').");
-			
-			int rand_num = rollDice();
-			
-			System.out.println('\t' + playerArray[b].getNameOfPlayer() + " rolled the dice and got " + rand_num + ".");
-		
-			if (b == 0)
-			{
-				playerArray[0].setNumOnDice(rand_num);
-			}
-			if (b == 1)
-			{
-				playerArray[1].setNumOnDice(rand_num);
-			}
-			if (b == 2)
-			{
-				playerArray[2].setNumOnDice(rand_num);
-			}
-			if (b == 3)
-			{
-				playerArray[3].setNumOnDice(rand_num);
-			}
-			
-		}*/
-		
-		
+
 	}
-	
-	
+
+//=======================================================================================================
 	/**
-	 * A method to check if two players have the same dice number when determining the order of play.
-	 * This method also sorts the sequence in which the players will play based on who has the highest number.
-	 * */
-	
-	public void play_order()
-	{
-		
-		int repeat_dice = 0;
-		
-		for (int b=0; b < NBofPlayers; b++)
-		{
-			for(int c= b+1; c< NBofPlayers; c++)
-			{
-				if (playerArray[b].getNumOnDice() < playerArray[c].getNumOnDice())
-				{
-					playerArray[4] = playerArray[b];
-					playerArray[b] = playerArray[c];
-					playerArray[c] = playerArray[4];
+	 * a method to check the order of playing turns. the first for loop to sort the array order (players with higher dice number put at earlier turns); the second for loop to determine if there is a tie. If number of ties>3 will ask all players to roll the dice again, otherwise will user a tie method
+	 */
+	public void checkOder() {
+		int sameDice = 0;
+		//boolean tie = false;
+		for (int i = 0; i < NBofPlayers; i++) {
+			for (int j = i + 1; j < NBofPlayers; j++) {
+				if (playerArray[i].getNumOnDice() < playerArray[j].getNumOnDice()) {
+					playerArray[4] = playerArray[i];
+					playerArray[i] = playerArray[j];
+					playerArray[j] = playerArray[4];
+				}
+			}
+
+		}
+		for (int i = 0; i < NBofPlayers; i++) {
+			for (int j = i + 1; j < NBofPlayers; j++) {
+				if (playerArray[i].getNumOnDice() == playerArray[j].getNumOnDice()) {
+					sameDice++;
+					System.out.println("\n~~~ The is a tie between "+playerArray[i].getNames() + " and " + playerArray[j].getNames() + " ~~~");
+					playerArray[i].setNumDiceRepeat(true);
+					playerArray[j].setNumDiceRepeat(true);
+					//tie = true;
 				}
 			}
 		}
-		
-		for(int b = 0; b < NBofPlayers; b++)
-		{
-			for(int c = b+1; c < NBofPlayers; c++)
-			{
-				if (playerArray[b].getNumOnDice() == playerArray[c].getNumOnDice())
-				{
-					repeat_dice++;
-					System.out.println("~~ There is a tie between" + playerArray[b].getNameOfPlayer() + " and " + playerArray[c].getNameOfPlayer() + ".");
-					playerArray[b].setNumDicRepeat(true);
-					playerArray[c].setNumDicRepeat(true);
-				}
-			}
+		if (sameDice >= 2) {
+			System.out.println("You all need to re-role!\n");
+			decidOrder(NBofPlayers);
+		} else if (sameDice == 1) {
+
+			tie();
 		}
-		
-		if(repeat_dice >= 2)
-		{
-			System.out.println("More than 2 players got the same number. Thus, we must restart from the beginning.");
-			player_order(NBofPlayers);
-		}
-		else if (repeat_dice == 1)
-		{
-			tie_true();
-		}
-		
-		
-		
-		
-		
+
 		
 	}
-	
+
+	// ========================================================================================
 	/**
-	 * A method to print the order in which the players will play based on the number they got
-	 * */
-	
-	public void order_print()
-	{
-		
-		System.out.println("\n" + "\nThe order to play the game:");
-		
-		for(int b=0; b < NBofPlayers; b++)
-		{
-			if(b==0)
-				System.out.println("\t - " + play1 + " " + playerArray[b].getNameOfPlayer());
-			if(b==1)
-				System.out.println("\t - " + play2 + " " + playerArray[b].getNameOfPlayer());
-			if(b==2)
-				System.out.println("\t - " + play3 + " " + playerArray[b].getNameOfPlayer());
-			if(b==3)
-				System.out.println("\t - " + play4 + " " + playerArray[b].getNameOfPlayer());
-			
-		}
-	}
-	
-	/**
-	 * In the case where there is a tie, this method will resolve it using a for loop.
-	 * */
-	
-	public void tie_true()
-	{
-		for(int b = 0; b< NBofPlayers; b++)
-		{
-			if (playerArray[b].isNumDiceRepeat())
-			{
-				System.out.println("~~ It is " + playerArray[b].getNameOfPlayer() + "'s turn." + "\nPlease roll the dice (Click on any button).");
+	 * a method to solve the tie issue. the first for loop to ask the user to roll the dice. the second for loop to sort the order. if another tie is reached call the tie method again.
+	 */
+	public void tie() {
+		for (int i = 0; i < NBofPlayers; i++) {
+			if (playerArray[i].isNumDiceRepeat()) {
+				System.out.print("\nIt is " + playerArray[i].getNames() + "'s turn." + "\n" + "  -> Please roll the dice (Press 'Enter').");
 				
-				//String rolling = key.nextLine();
+				String enter = key.nextLine();
+				playerArray[i].setNumOnDice(rollDice());
 				
-				playerArray[b].setNumOnDice(rollDice());
-				
-				System.out.println(playerArray[b].getNameOfPlayer() + " rolled the dice and got " + playerArray[b].getNumOnDice() + ".");
+				System.out.println("\t ~~> " + playerArray[i].getNames() + " rolled the dice and got " + playerArray[i].getNumOnDice() + "");
 			}
 		}
-		
-		for(int b=0; b< NBofPlayers; b++)
-		{
-			for(int c=(b+1); c<NBofPlayers; c++)
-			{
-				if(playerArray[b].isNumDiceRepeat() && playerArray[c].isNumDiceRepeat())
-				{
-					if (playerArray[b].getNumOnDice() < playerArray[c].getNumOnDice())
-					{
-						playerArray[4] = playerArray[b];
-						playerArray[b] = playerArray[c];
-						playerArray[c] = playerArray[4];
+		for (int i = 0; i < NBofPlayers; i++) {
+			for (int j = i + 1; j < NBofPlayers; j++) {
+				if (playerArray[i].isNumDiceRepeat() && playerArray[j].isNumDiceRepeat()) {
+					if (playerArray[i].getNumOnDice() < playerArray[j].getNumOnDice()) {
+						playerArray[4] = playerArray[i];
+						playerArray[i] = playerArray[j];
+						playerArray[j] = playerArray[4];
+					} else if (playerArray[i].getNumOnDice() == playerArray[j].getNumOnDice()) {
+						System.out.println("It is a tie again between " + playerArray[i].getNames() + " and " + playerArray[j].getNames());
+						tie();
 					}
-					else if (playerArray[b].getNumOnDice() == playerArray[c].getNumOnDice())
-					{
-						System.out.println("It is a again between " + playerArray[b].getNameOfPlayer() + " and " + playerArray[c].getNameOfPlayer());
-						tie_true();
-					}
+
 				}
 			}
 		}
 	}
-	
+
+//======================================================================================================
+	/**
+	 * a method to print out the order of playing turns
+	 */
+	public void printOrder() {
+		System.out.println("\nThe order is: ");
+		for (int i = 0; i < NBofPlayers; i++) {
+
+			System.out.println("\t - " + playerArray[i].getNames() + " ");
+		}
+	}
 	
 	/**
 	 * A method to start playing that game a player at a time following the players array
@@ -549,18 +398,13 @@ public class LadderAndSnake {
 	
 	public void playing_Snk()
 	{
-		//order_print();
-		while (!playerArray[0].isChampion() &&
-			   !playerArray[1].isChampion() &&
-			   !playerArray[2].isChampion() &&
-			   !playerArray[3].isChampion())
+		printOrder();
+		for (int i =0; i<NBofPlayers; i++)
+		while (!playerArray[i].isChampion() )
 		{
-			for(int b=0; b<NBofPlayers && !playerArray[0].isChampion() &&
-										  !playerArray[1].isChampion() &&
-										  !playerArray[2].isChampion() &&
-										  !playerArray[3].isChampion(); b++)
+			for(int b=0; b<NBofPlayers && !playerArray[i].isChampion() ; b++)
 			{
-				System.out.print("\n~~ It is " + playerArray[b].getNameOfPlayer() + "'s turn.");
+				System.out.print("\n~~ It is " + playerArray[b].getNames() + "'s turn. (" + playerArray[b].getNameOfPlayer() + ")");
 				System.out.println(" Please roll the dice! (Click on any button)");
 				
 				int c =0;
