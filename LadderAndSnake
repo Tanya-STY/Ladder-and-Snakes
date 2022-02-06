@@ -1,0 +1,591 @@
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class LadderAndSnake {
+	
+	private int NBofPlayers;
+	Scanner key = new Scanner(System.in);
+	
+	
+	
+	private board[][] board_map = new board [10][10];
+	private players[] playerArray = new players[5];
+
+	
+	public void board_map()
+	{
+		int a=1;
+		
+		for(int b=0;b<10;b++)
+		{
+			for(int c=0;c<10;c++,a++)
+				board_map[b][c] = new board("~~", a);
+		}
+	}
+
+	
+
+	public void Map_Print(String name_player, int position)
+	{
+		System.out.println("_______________________________________________________________________________________________________________");
+		System.out.println();
+		for(int b=0; b<10; b++)
+		{
+			for(int c=0; c<10; c++)
+			{
+				if(board_map[b][c].getPlayer_Name().equals(name_player))
+				{
+					board_map[b][c].setPlayer_Name("~~");
+				}
+			}
+		}
+		
+		
+		
+		for(int b=0; b<1; b++)
+		{
+			for(int c=0; c<10; c++)
+			{
+				if(board_map[b][c].getPlayLoc() == position)
+				{
+					board_map[b][c].setPlayer_Name(name_player);
+				}
+			}
+		}
+		
+		
+		for(int b=0; b<1; b++)
+		{
+			for(int c=0; c<10; c++)
+			{
+			
+				
+				//Player's name assigned to its position
+				if(board_map[b][c].getPlayLoc() == position)
+				{
+						System.out.print("|____" + board_map[b][c].getPlayer_Name() + "____");
+						
+					
+					//System.out.println(                                 "Player 4 ");
+				}
+				
+				
+				else if(board_map[b][c].getPlayer_Name().equals("~~"))
+				{
+					if(board_map[b][c].getPlayLoc() == 100) {
+						System.out.println("_____@" + board_map[b][c].getPlayLoc() + "_____#");}
+					
+					
+					if(board_map[b][c].getPlayLoc() < 100) {
+					System.out.print("|_____" + board_map[b][c].getPlayLoc() + "____");}
+				}
+				
+				
+				else if(!board_map[b][c].getPlayer_Name().equals("~~"))
+				{
+					System.out.print("|____" + board_map[b][c].getPlayer_Name() + "____");
+				}
+			}
+			System.out.println();
+			System.out.println();
+		}
+		
+	
+	//Set the player to it's new position
+		for(int b=1; b<10; b++)
+		{
+			for(int c=0; c<10; c++)
+			{
+				if(board_map[b][c].getPlayLoc() == position)
+				{
+					board_map[b][c].setPlayer_Name(name_player);
+				}
+			}
+		}
+		
+		
+		for(int b=1; b<10; b++)
+		{
+			for(int c=0; c<10; c++)
+			{
+			
+				
+				
+				if(board_map[b][c].getPlayLoc() == position)
+				{
+						System.out.print("|____" + board_map[b][c].getPlayer_Name() + "____");
+						
+					
+					//System.out.println(                                 "Player 4 ");
+				}
+				
+				else if(board_map[b][c].getPlayer_Name().equals("~~"))
+				{
+					if(board_map[b][c].getPlayLoc() == 100) {
+						System.out.println("|___" + board_map[b][c].getPlayLoc()+"____" );}
+					
+					if(board_map[b][c].getPlayLoc() < 100) {
+					System.out.print("|____" +board_map[b][c].getPlayLoc() + "____");}
+				}
+				
+				
+				else if(!board_map[b][c].getPlayer_Name().equals("~~"))
+				{
+					System.out.print("|____" + board_map[b][c].getPlayer_Name() + "____");
+				}
+			}
+			System.out.println();
+			System.out.println();
+		}
+		
+		
+	}
+	
+	/**
+	 * Constructor
+	 * @param NBofPlayers
+	 * */
+	
+	public LadderAndSnake (int NBofPlayers)
+	{
+		this.NBofPlayers = NBofPlayers;
+		System.out.println("\nThe number of players: " + NBofPlayers + ".\n");
+		
+		 for (int b = 0; b < NBofPlayers; b++) {
+	            System.out.print("Please enter #" + (b + 1) + " Player's name: ");
+	            playerArray [b] = new players(null, b, b, false, false);
+	            String temp = "~~";
+	            temp = key.next();
+	            playerArray[b].setNameOfPlayer("~~");
+	        }
+		 
+		 
+
+	}
+	
+	
+	/**
+	 * A method to declare an object array to "store" each player's information
+	 * */
+	
+	//maximum of 4 players
+	//"calling" the players class; ("name of the player", number on the dice, location, T/F repeated dice, T/F winner);
+	
+	public void setPlayerArray()
+	{
+		playerArray[0] = new players ("SJ", 0, 0, false, false);
+		playerArray[1] = new players ("TS", 0, 0, false, false);
+		playerArray[2] = new players ("FD", 0, 0, false, false);
+		playerArray[3] = new players ("MJ", 0, 0, false, false);
+		
+		
+		//this player is not used in the game but only for the method "play_order"
+		playerArray[4] = new players ("CHECK ORDER", 0, 0, false, false);
+	}
+	
+	/**
+	 * @return generate a random number between 1 and 6
+	 * */
+	
+	/*public int rollDice()
+	{
+		int dice_nb;
+		return dice_nb = 1 + (int)(Math.random() * 6);
+	}*/
+	
+	private static int rollDice() {
+        int dice_nb;
+        
+        Scanner key = new Scanner(System.in);
+        String rolling = key.nextLine();
+        Random rand_num = new Random();
+        
+        dice_nb = rand_num.nextInt(6) + 1;
+        return dice_nb;
+    }
+	
+	/**
+	 * A method to print the order in which the players will play based on the number they got
+	 * */
+	
+	public void order_print()
+	{
+		
+		System.out.println("\nThe order to play the game:");
+		
+		for(int b=0; b < NBofPlayers; b++)
+		{
+			System.out.println("\t - " + playerArray[b].getNameOfPlayer());
+		}
+	}
+	
+	/**
+	 * A method for the players to roll the dice to determine the order in which the players will play before starting to play
+	 * @param NBofPlayers
+	 * */
+	
+	public void player_order (int NBofPlayers)
+	{
+		setPlayerArray();
+
+		System.out.println("\nEach player must throw the dice to obtain the largest possible number to determine the order in which the players will play!");
+		int count = 1;
+		
+		for(int b=1; b< NBofPlayers + 1; b++)
+		{
+			System.out.println("It is Player " + count + "'s turn.");
+			
+			System.out.println("Please roll the dice (click any button.)");
+			String rolling = key.nextLine();
+			
+			int rand_num = rollDice();
+			
+			System.out.println("Player " + count + " rolled the dice and got " + rand_num +".");
+			
+			if (b == 1)
+			{
+				playerArray[0].setNumOnDice(rand_num);
+			}
+			if (b == 2)
+			{
+				playerArray[1].setNumOnDice(rand_num);
+			}
+			if (b == 3)
+			{
+				playerArray[2].setNumOnDice(rand_num);
+			}
+			if (b == 4)
+			{
+				playerArray[3].setNumOnDice(rand_num);
+			}
+			
+		count++;
+		}
+		
+		/*for(int b=0; b<NBofPlayers ; b++)
+		{
+			System.out.println("\n~~ It is " + playerArray[b].getNameOfPlayer() + "'s turn." );
+			System.out.print("\tPlease roll the dice (click any button).");
+			
+			int rand_num = rollDice();
+			
+			System.out.println('\t' + playerArray[b].getNameOfPlayer() + " rolled the dice and got " + rand_num + ".");
+		
+			if (b == 1)
+			{
+				playerArray[0].setNumOnDice(rand_num);
+			}
+			if (b == 2)
+			{
+				playerArray[1].setNumOnDice(rand_num);
+			}
+			if (b == 3)
+			{
+				playerArray[2].setNumOnDice(rand_num);
+			}
+			if (b == 4)
+			{
+				playerArray[3].setNumOnDice(rand_num);
+			}
+		}*/	
+		
+		
+	/*	for(int b=0; b<NBofPlayers ; b++)
+		{
+			System.out.println("\n~~ It is " + playerArray[b].getNameOfPlayer() + "'s turn." );
+			System.out.print("\tPlease roll the dice (press 'ENTER').");
+			
+			int rand_num = rollDice();
+			
+			System.out.println('\t' + playerArray[b].getNameOfPlayer() + " rolled the dice and got " + rand_num + ".");
+		
+			if (b == 0)
+			{
+				playerArray[0].setNumOnDice(rand_num);
+			}
+			if (b == 1)
+			{
+				playerArray[1].setNumOnDice(rand_num);
+			}
+			if (b == 2)
+			{
+				playerArray[2].setNumOnDice(rand_num);
+			}
+			if (b == 3)
+			{
+				playerArray[3].setNumOnDice(rand_num);
+			}
+			
+		}*/
+		
+		
+	}
+	
+	
+	/**
+	 * A method to check if two players have the same dice number when determining the order of play.
+	 * This method also sorts the sequence in which the players will play based on who has the highest number.
+	 * */
+	
+	public void play_order()
+	{
+		
+		{
+		int repeat_dice = 0;
+		
+		for (int b=0; b < NBofPlayers; b++)
+		{
+			for(int c= (b+1); c< NBofPlayers; c++)
+			{
+				if (playerArray[b].getNumOnDice() < playerArray[c].getNumOnDice())
+				{
+					playerArray[4] = playerArray[b];
+					playerArray[b] = playerArray[c];
+					playerArray[c] = playerArray[4];
+				}
+			}
+		}
+		
+		for(int b = 0; b < NBofPlayers; b++)
+		{
+			for(int c = b+1; c < NBofPlayers; c++)
+			{
+				if (playerArray[b].getNumOnDice() == playerArray[c].getNumOnDice())
+				{
+					repeat_dice++;
+					System.out.println("~~ There is a tie between" + playerArray[b].getNameOfPlayer() + " and " + playerArray[c].getNameOfPlayer() + ".");
+					playerArray[b].setNumDicRepeat(true);
+					playerArray[c].setNumDicRepeat(true);
+				}
+			}
+		}
+		
+		if(repeat_dice >= 2)
+		{
+			System.out.println("More than 2 players got the same number. Thus, we must restart from the beginning.");
+			player_order(NBofPlayers);
+		}
+		else if (repeat_dice == 1)
+		{
+			tie_true();
+		}
+		
+		
+		
+		}
+		
+		
+	}
+	
+	/**
+	 * In the case where there is a tie, this method will resolve it using a for loop.
+	 * */
+	
+	public void tie_true()
+	{
+		for(int b = 1; b< NBofPlayers; b++)
+		{
+			if (playerArray[b].isNumDiceRepeat())
+			{
+				System.out.println("~~ It is " + playerArray[b].getNameOfPlayer() + "'s turn." + "\nPlease roll the dice (click on any button).");
+				
+				String rolling = key.nextLine();
+				
+				playerArray[b].setNumOnDice(rollDice());
+				
+				System.out.println(playerArray[b].getNameOfPlayer() + " rolled the dice and got " + playerArray[b].getNumOnDice() + ".");
+			}
+		}
+		
+		for(int b=0; b< NBofPlayers; b++)
+		{
+			for(int c=(b+1); c<NBofPlayers; c++)
+			{
+				if(playerArray[b].isNumDiceRepeat() && playerArray[c].isNumDiceRepeat())
+				{
+					if (playerArray[b].getNumOnDice() < playerArray[c].getNumOnDice())
+					{
+						playerArray[4] = playerArray[b];
+						playerArray[b] = playerArray[c];
+						playerArray[c] = playerArray[4];
+					}
+					else if (playerArray[b].getNumOnDice() == playerArray[c].getNumOnDice())
+					{
+						System.out.println("It is a again between " + playerArray[b].getNameOfPlayer() + " and " + playerArray[c].getNameOfPlayer());
+						tie_true();
+					}
+				}
+			}
+		}
+	}
+	
+	
+	/**
+	 * A method to start playing that game a player at a time following the players array
+	 * The method contains a while loop which lets the players roll the dice till there's a winner.
+	 * */
+	
+	public void playing_Snk()
+	{
+		order_print();
+		while (!playerArray[0].isChampion() &&
+			   !playerArray[1].isChampion() &&
+			   !playerArray[2].isChampion() &&
+			   !playerArray[3].isChampion())
+		{
+			for(int b=0; b<NBofPlayers && !playerArray[0].isChampion() &&
+										  !playerArray[1].isChampion() &&
+										  !playerArray[2].isChampion() &&
+										  !playerArray[3].isChampion(); b++)
+			{
+				System.out.print("\n~~ It is " + playerArray[b].getNameOfPlayer() + "'s turn.");
+				System.out.println(" Please roll the dice! (Cick on any button)");
+				
+				int c =0;
+				c = rollDice();
+				
+				playerArray[b].PlayerMovement(c);
+		
+			//Player face a ladder or the head of a snake
+				playerArray[b].setPlayLoc(Ladders_and_Snakes(playerArray[b].getPlayLoc()));
+				
+				if(playerArray[b].getPlayLoc() == 100)
+				{
+					playerArray[b].setChampion(true);
+				}
+				
+				Map_Print(playerArray[b].getNameOfPlayer(), playerArray[b].getPlayLoc());
+			}
+			
+		}
+		
+		key.close();
+			
+	}
+	
+	
+	/**
+	 * A method that analyzes the position of the player and if the player faces a ladder, the position will go
+	 * up the board and if the player faces a snake's head, this method will change the position to the tail of
+	 * snake.
+	 * 
+	 * @param new_position
+	 * @return to the new position after the player faces either a ladder or a snake
+	 * */
+	
+	public int Ladders_and_Snakes (int new_position)
+	
+	{
+		System.out.println('\t');
+		if(new_position == 1)
+		{
+			System.out.println( "You have landed at the bottom of a ladder. You are going up to 38.");
+			new_position = 38;
+		}
+		
+		if(new_position == 4)
+		{
+			System.out.println( "You have  landed at the bottom of a ladder. You are going up to 14.");
+			new_position = 14;
+		}
+		
+		if(new_position == 9)
+		{
+			System.out.println( "You have landed at the bottom of a ladder. You are going up to 31.");
+			new_position = 31;
+		}
+		
+		if(new_position == 16)
+		{
+			System.out.println( "You have landed on the snake's head and got bit! You must go down to 6.");
+			new_position = 6;
+		}
+		
+		if(new_position == 28)
+		{
+			System.out.println( "You have landed at the bottom of a ladder. You are going up to 84.");
+			new_position = 84;
+		}
+		
+		if(new_position == 21)
+		{
+			System.out.println( "You have landed at the bottom of a ladder. You are going up to 42.");
+			new_position = 42;
+		}
+		
+		if(new_position == 36)
+		{
+			System.out.println( "You have landed at the bottom of a ladder. You are going up to 44.");
+			new_position = 44;
+		}
+		
+		if(new_position == 48)
+		{
+			System.out.println( "You have landed on the snake's head and got bit! You must go down to 30.");
+			new_position = 30;
+		}
+		
+		if(new_position == 51)
+		{
+			System.out.println( "You have landed at the bottom of a ladder. You are going up to 67.");
+			new_position = 67;
+		}
+		
+		if(new_position == 64)
+		{
+			System.out.println( "You have landed on the snake's head and got bit! You must go down to 60.");
+			new_position = 60;
+		}
+		
+		if(new_position == 71)
+		{
+			System.out.println( "You have landed at the bottom of a ladder. You are going up to 91.");
+			new_position = 91;
+		}
+		
+		if(new_position == 79)
+		{
+			System.out.println( "You have landed on the snake's head and got bit! You must go down to 19.");
+			new_position = 19;
+		}
+		
+		if(new_position == 80)
+		{
+			System.out.println( "You have landed at the bottom of a ladder. You are going up to 100.");
+			new_position = 100;
+		}
+		
+		if(new_position == 93)
+		{
+			System.out.println( "You have landed on the snake's head and got bit! You must go down to 68.");
+			new_position = 68;
+		}
+		
+		if(new_position == 95)
+		{
+			System.out.println( "You have landed on the snake's head and got bit! You must go down to 24.");
+			new_position = 24;
+		}
+		
+		if(new_position == 97)
+		{
+			System.out.println( "You have landed on the snake's head and got bit! You must go down to 76.");
+			new_position = 76;
+		}
+		
+		if(new_position == 98)
+		{
+			System.out.println( "You have landed on the snake's head and got bit! You must go down to 78.");
+			new_position = 78;
+		}
+		
+		System.out.println();
+		return new_position;
+		
+		
+	}
+	
+	
+	
+}
