@@ -5,6 +5,11 @@ import java.util.Random;
 public class LadderAndSnake {
 	
 	private int NBofPlayers;
+	String temp = "~~";
+	String play1;
+	String play2;
+	String play3;
+	String play4;
 	Scanner key = new Scanner(System.in);
 	
 	
@@ -154,10 +159,12 @@ public class LadderAndSnake {
 		this.NBofPlayers = NBofPlayers;
 		System.out.println("\nThe number of players: " + NBofPlayers + ".\n");
 		
-		String temp = "~~";
+		
 		for (int b = 0; b < NBofPlayers; b++) {
+		
+		//	playerArray[b].setNameOfPlayer("~~");
 			 
-		System.out.print("Please enter #" + (b + 1) + " Player's name: ");
+		/*System.out.print("Please enter #" + (b + 1) + " Player's name: ");
 	            playerArray [b] = new players(null, b, b, false, false);
 	            
 	            temp = key.next();
@@ -187,7 +194,57 @@ public class LadderAndSnake {
 	            System.out.print('\t' + temp + " will be assigned to: " + "\uD83E\uDD20");
 	            }
 	            
+	     */
+			
+			if(b == 0)
+			{
+				System.out.print("Please enter #" + (b + 1) + " Player's name: ");
+	            playerArray [0] = new players(null, b, b, false, false);
 	            
+	            play1 = key.next();
+	            
+	            playerArray[0].setNameOfPlayer(play1);
+	            System.out.print('\t' + play1 + " will be assigned to: " + "\uD83D\uDE00" );
+	            
+			}
+			
+			if(b == 1)
+			{
+				System.out.print("Please enter #" + (b + 1) + " Player's name: ");
+	            playerArray [1] = new players(null, b, b, false, false);
+	            
+	            play2 = key.next();
+	            
+	            playerArray[1].setNameOfPlayer(play2);
+	            System.out.print('\t' + play2 + " will be assigned to: " + "\uD83D\uDE00" );
+	            
+			}
+			
+			if(b == 2)
+			{
+				System.out.print("Please enter #" + (b + 1) + " Player's name: ");
+	            playerArray [2] = new players(null, b, b, false, false);
+	            
+	            play3 = key.next();
+	            
+	            playerArray[2].setNameOfPlayer(play3);
+	            System.out.print('\t' + play3 + " will be assigned to: " + "\uD83D\uDE00" );
+	            
+			}
+			
+			if(b == 3)
+			{
+				System.out.print("Please enter #" + (b + 1) + " Player's name: ");
+	            playerArray [3] = new players(null, b, b, false, false);
+	            
+	            play4 = key.next();
+	            
+	            playerArray[3].setNameOfPlayer(play4);
+	            System.out.print('\t' + play4 + " will be assigned to: " + "\uD83D\uDE00" );
+	            
+			}
+
+			
 	            System.out.println("\n");
 		 
 		 }
@@ -261,19 +318,42 @@ public class LadderAndSnake {
 	{
 		setPlayerArray();
 
-		System.out.println("\nEach player must throw the dice to obtain the largest possible number to determine the order in which the players will play!");
-		int count = 1;
+		System.out.print("Each player must throw the dice to obtain the largest possible number to determine the order in which the players will play!");
+		//int count = 1;
 		
-		for(int b=1; b< NBofPlayers + 1; b++)
+		for(int b=1; b < NBofPlayers + 1; b++)
 		{
-			System.out.println("It is Player " + count + "'s turn.");
+			System.out.println();
+			if(b==1)
+			System.out.print("\n~~ It is " + play1 + "'s turn.");
 			
-			System.out.println("Please roll the dice (Click any button.)");
+			if(b==2)
+				System.out.print("\n~~ It is " + play2 + "'s turn.");
+			
+			if(b==3)
+				System.out.print("\n~~ It is " + play2 + "'s turn.");
+			
+			if(b==4)
+				System.out.print("\n~~ It is " + play3 + "'s turn.");
+			
+			System.out.print("\n  -> Please roll the dice (Click any button.)");
 			//String rolling = key.nextLine();
 			
 			int rand_num = rollDice();
 			
-			System.out.println("Player " + count + " rolled the dice and got " + rand_num +".");
+			if(b==1)
+				System.out.print("\t"+ play1 + " rolled the dice and got " + rand_num +".");
+				
+			if(b==2)
+				System.out.print("\t"+ play2 + " rolled the dice and got " + rand_num +".");
+				
+			if(b==3)
+				System.out.print("\t"+ play3 + " rolled the dice and got " + rand_num +".");
+				
+			if(b==4)
+				System.out.print("\t"+ play4 + " rolled the dice and got " + rand_num +".");
+			
+			
 			
 			if (b == 1)
 			{
@@ -292,7 +372,7 @@ public class LadderAndSnake {
 				playerArray[3].setNumOnDice(rand_num);
 			}
 			
-		count++;
+	//	count++;
 		}
 		
 		/*for(int b=0; b<NBofPlayers ; b++)
