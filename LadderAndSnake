@@ -147,18 +147,50 @@ public class LadderAndSnake {
 	 * @param NBofPlayers
 	 * */
 	
+
+	
 	public LadderAndSnake (int NBofPlayers)
 	{
 		this.NBofPlayers = NBofPlayers;
 		System.out.println("\nThe number of players: " + NBofPlayers + ".\n");
 		
-		 for (int b = 0; b < NBofPlayers; b++) {
-	            System.out.print("Please enter #" + (b + 1) + " Player's name: ");
+		String temp = "~~";
+		for (int b = 0; b < NBofPlayers; b++) {
+			 
+		System.out.print("Please enter #" + (b + 1) + " Player's name: ");
 	            playerArray [b] = new players(null, b, b, false, false);
-	            String temp = "~~";
+	            
 	            temp = key.next();
 	            playerArray[b].setNameOfPlayer("~~");
-	        }
+	            
+	            if (b == 0)
+	            {
+	            	playerArray[b].setNameOfPlayer("\uD83D\uDE00");
+	            System.out.print('\t' + temp + " will be assigned to: " + "\uD83D\uDE00" );
+	            }
+	            
+	            if (b == 1)
+	            {
+	            	playerArray[b].setNameOfPlayer("\uD83D\uDE08");
+	            System.out.print('\t' + temp + " will be assigned to: " + "\uD83D\uDE08" );
+	            }
+	            
+	            if (b == 2)
+	            {
+	            	playerArray[b].setNameOfPlayer("\uD83D\uDC79");
+	            System.out.print('\t' + temp + " will be assigned to: " + "\uD83D\uDC79" );
+	            }
+	            
+	            if (b == 3)
+	            {
+	            	playerArray[b].setNameOfPlayer("\uD83E\uDD20");
+	            System.out.print('\t' + temp + " will be assigned to: " + "\uD83E\uDD20");
+	            }
+	            
+	            
+	            System.out.println("\n");
+		 
+		 }
 		 
 		 
 
@@ -174,10 +206,10 @@ public class LadderAndSnake {
 	
 	public void setPlayerArray()
 	{
-		playerArray[0] = new players ("SJ", 0, 0, false, false);
-		playerArray[1] = new players ("TS", 0, 0, false, false);
-		playerArray[2] = new players ("FD", 0, 0, false, false);
-		playerArray[3] = new players ("MJ", 0, 0, false, false);
+		playerArray[0] = new players ("\uD83D\uDE00", 0, 0, false, false);
+		playerArray[1] = new players ("\uD83D\uDE08", 0, 0, false, false);
+		playerArray[2] = new players ("\uD83D\uDC79", 0, 0, false, false);
+		playerArray[3] = new players ("\uD83E\uDD20", 0, 0, false, false);
 		
 		
 		//this player is not used in the game but only for the method "play_order"
@@ -236,8 +268,8 @@ public class LadderAndSnake {
 		{
 			System.out.println("It is Player " + count + "'s turn.");
 			
-			System.out.println("Please roll the dice (click any button.)");
-			String rolling = key.nextLine();
+			System.out.println("Please roll the dice (Click any button.)");
+			//String rolling = key.nextLine();
 			
 			int rand_num = rollDice();
 			
@@ -384,13 +416,13 @@ public class LadderAndSnake {
 	
 	public void tie_true()
 	{
-		for(int b = 1; b< NBofPlayers; b++)
+		for(int b = 0; b< NBofPlayers; b++)
 		{
 			if (playerArray[b].isNumDiceRepeat())
 			{
-				System.out.println("~~ It is " + playerArray[b].getNameOfPlayer() + "'s turn." + "\nPlease roll the dice (click on any button).");
+				System.out.println("~~ It is " + playerArray[b].getNameOfPlayer() + "'s turn." + "\nPlease roll the dice (Click on any button).");
 				
-				String rolling = key.nextLine();
+				//String rolling = key.nextLine();
 				
 				playerArray[b].setNumOnDice(rollDice());
 				
@@ -440,7 +472,7 @@ public class LadderAndSnake {
 										  !playerArray[3].isChampion(); b++)
 			{
 				System.out.print("\n~~ It is " + playerArray[b].getNameOfPlayer() + "'s turn.");
-				System.out.println(" Please roll the dice! (Cick on any button)");
+				System.out.println(" Please roll the dice! (Click on any button)");
 				
 				int c =0;
 				c = rollDice();
@@ -477,7 +509,8 @@ public class LadderAndSnake {
 	public int Ladders_and_Snakes (int new_position)
 	
 	{
-		System.out.println('\t');
+		System.out.print('\t');
+		{
 		if(new_position == 1)
 		{
 			System.out.println( "You have landed at the bottom of a ladder. You are going up to 38.");
@@ -583,7 +616,7 @@ public class LadderAndSnake {
 		System.out.println();
 		return new_position;
 		
-		
+		}
 	}
 	
 	
