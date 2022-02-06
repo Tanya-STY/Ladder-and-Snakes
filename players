@@ -12,6 +12,8 @@
  * General explanation of what the program does: 
  * */
 
+import java.util.Scanner;
+
 public class players {
 	
 /**
@@ -32,6 +34,7 @@ public class players {
  * */
 	
 	private String NameOfPlayer;
+	
 	private int NumOnDice;
 	
 	//PlayLoc = player's location (square#) before the game starts
@@ -39,10 +42,15 @@ public class players {
 	private boolean NumDiceRepeat;
 	private boolean Champ;
 	
+	String temp2 = "";
+	
+	Scanner keyboard = new Scanner (System.in);
+	
 
 public players (String NameOfPlayer, int NumOnDice, int PlayLoc, boolean NumDiceRepeat, boolean Champ) {
 	
 	this.NameOfPlayer = NameOfPlayer;
+	
 	this.NumOnDice = NumOnDice;
 	this.PlayLoc = PlayLoc;
 	this.NumDiceRepeat = NumDiceRepeat;
@@ -54,6 +62,12 @@ public String getNameOfPlayer()
 {
 	return NameOfPlayer;
 }
+
+public void setNameOfPlayer(String NameOfPlayer) {
+    this.NameOfPlayer = NameOfPlayer;
+}
+
+
 
 public int getNumOnDice()
 {
@@ -90,6 +104,10 @@ public boolean isChampion()
 	return Champ;
 }
 
+
+
+
+
 /**
  * A method for the player to move a defined number of squares on the board based
  * on the number on the dice.
@@ -102,20 +120,20 @@ public void PlayerMovement (int p)
 		PlayLoc = PlayLoc + p;
 		
 		Champ = true;
-		System.out.println("~ ~" + NameOfPlayer + " rolled the dice and got " + p + " and is now at " + PlayLoc + ".");
-		System.out.println("~ ~" + NameOfPlayer + " is the WINNER!");
+		System.out.println("\t~~> " + temp2 + " rolled the dice and got " + p + " and is now at " + PlayLoc + ".");
+		System.out.println("\t~~> " + temp2 + " is the WINNER!");
 	}
 	
 	else if (PlayLoc + p > 100)
 	{
 		PlayLoc = 100 - (PlayLoc + p -100);
-		System.out.println("~ ~" + NameOfPlayer + " rolled the dice and got " + p + " and is now at " + PlayLoc + " which exceeds the limits of the board.");
+		System.out.println("\t~~> " + NameOfPlayer + " rolled the dice and got " + p + " and is now at " + PlayLoc + " which exceeds the limits of the board.");
 	}
 	
 	else
 	{
 		PlayLoc = PlayLoc + p;
-		System.out.println("~ ~" + NameOfPlayer + " rolled the dice and got " + p + " and is now at " + PlayLoc + ".");
+		System.out.println("\t~~> " + NameOfPlayer + " rolled the dice and got " + p + " and is now at " + PlayLoc + ".");
 	}
 }
 
@@ -127,6 +145,11 @@ public void setPlayLoc(int PlayLoc)
 {
 	this.PlayLoc = PlayLoc;
 	
+	/*if (PlayLoc == 100)
+	{
+		Champ = true;
+	System.out.println("WOAH!!!");
+	}*/
 }
 
 }
