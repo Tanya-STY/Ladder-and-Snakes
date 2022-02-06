@@ -204,7 +204,7 @@ public class LadderAndSnake {
 	            play1 = key.next();
 	            
 	            playerArray[0].setNameOfPlayer(play1);
-	            System.out.print('\t' + play1 + " will be assigned to: " + "\uD83D\uDE00" );
+	            System.out.print('\t' + play1 + " will be assigned to: " + "\uD83D\uDE00");
 	            
 			}
 			
@@ -216,7 +216,7 @@ public class LadderAndSnake {
 	            play2 = key.next();
 	            
 	            playerArray[1].setNameOfPlayer(play2);
-	            System.out.print('\t' + play2 + " will be assigned to: " + "\uD83D\uDE00" );
+	            System.out.print('\t' + play2 + " will be assigned to: " + "\uD83D\uDE08" );
 	            
 			}
 			
@@ -228,7 +228,7 @@ public class LadderAndSnake {
 	            play3 = key.next();
 	            
 	            playerArray[2].setNameOfPlayer(play3);
-	            System.out.print('\t' + play3 + " will be assigned to: " + "\uD83D\uDE00" );
+	            System.out.print('\t' + play3 + " will be assigned to: " + "\uD83D\uDC79" );
 	            
 			}
 			
@@ -240,7 +240,7 @@ public class LadderAndSnake {
 	            play4 = key.next();
 	            
 	            playerArray[3].setNameOfPlayer(play4);
-	            System.out.print('\t' + play4 + " will be assigned to: " + "\uD83D\uDE00" );
+	            System.out.print('\t' + play4 + " will be assigned to: " + "\uD83E\uDD20" );
 	            
 			}
 
@@ -294,20 +294,7 @@ public class LadderAndSnake {
         return dice_nb;
     }
 	
-	/**
-	 * A method to print the order in which the players will play based on the number they got
-	 * */
 	
-	public void order_print()
-	{
-		
-		System.out.println("\nThe order to play the game:");
-		
-		for(int b=0; b < NBofPlayers; b++)
-		{
-			System.out.println("\t - " + playerArray[b].getNameOfPlayer());
-		}
-	}
 	
 	/**
 	 * A method for the players to roll the dice to determine the order in which the players will play before starting to play
@@ -331,10 +318,10 @@ public class LadderAndSnake {
 				System.out.print("\n~~ It is " + play2 + "'s turn.");
 			
 			if(b==3)
-				System.out.print("\n~~ It is " + play2 + "'s turn.");
+				System.out.print("\n~~ It is " + play3 + "'s turn.");
 			
 			if(b==4)
-				System.out.print("\n~~ It is " + play3 + "'s turn.");
+				System.out.print("\n~~ It is " + play4 + "'s turn.");
 			
 			System.out.print("\n  -> Please roll the dice (Click any button.)");
 			//String rolling = key.nextLine();
@@ -443,12 +430,11 @@ public class LadderAndSnake {
 	public void play_order()
 	{
 		
-		{
 		int repeat_dice = 0;
 		
 		for (int b=0; b < NBofPlayers; b++)
 		{
-			for(int c= (b+1); c< NBofPlayers; c++)
+			for(int c= b+1; c< NBofPlayers; c++)
 			{
 				if (playerArray[b].getNumOnDice() < playerArray[c].getNumOnDice())
 				{
@@ -485,9 +471,32 @@ public class LadderAndSnake {
 		
 		
 		
+		
+		
+		
+	}
+	
+	/**
+	 * A method to print the order in which the players will play based on the number they got
+	 * */
+	
+	public void order_print()
+	{
+		
+		System.out.println("\n" + "\nThe order to play the game:");
+		
+		for(int b=0; b < NBofPlayers; b++)
+		{
+			if(b==0)
+				System.out.println("\t - " + play1 + " " + playerArray[b].getNameOfPlayer());
+			if(b==1)
+				System.out.println("\t - " + play2 + " " + playerArray[b].getNameOfPlayer());
+			if(b==2)
+				System.out.println("\t - " + play3 + " " + playerArray[b].getNameOfPlayer());
+			if(b==3)
+				System.out.println("\t - " + play4 + " " + playerArray[b].getNameOfPlayer());
+			
 		}
-		
-		
 	}
 	
 	/**
@@ -540,7 +549,7 @@ public class LadderAndSnake {
 	
 	public void playing_Snk()
 	{
-		order_print();
+		//order_print();
 		while (!playerArray[0].isChampion() &&
 			   !playerArray[1].isChampion() &&
 			   !playerArray[2].isChampion() &&
