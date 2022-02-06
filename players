@@ -1,0 +1,132 @@
+/**
+ * -----------------------------------------------------
+ * Assignment 0
+ * Question: (include question/part number, if applicable) 
+ * Written by: Fadoua Doghmane ID# and Tanya So Tin Yan ID#40208954
+ * -----------------------------------------------------
+ * @author Fadoua Doghmane ID# and Tanya So Tin Yan ID#40208954
+ * COMP249
+ * Assignment    #0
+ * Due Date      Friday, February 4, 2022
+ * 
+ * General explanation of what the program does: 
+ * */
+
+public class players {
+	
+/**
+ * A player constructor to assign
+ * 	- player's name
+ *  - player's dice number
+ *  - player's location/position
+ *  - if two players are tied (have same dice number)
+ *  - if the payer is the winner
+ * */
+	
+/**
+ * @param NameOfPlayer = player's name
+ * @param NumOnDice id the number on the dice to determine the order
+ * @param PlayLoc = location number on the board
+ * @param NumDiceRepeat = true or false if two players got the same NumOnDice
+ * @param champ = true or false if the player is the winner/champion of the game
+ * */
+	
+	private String NameOfPlayer;
+	private int NumOnDice;
+	
+	//PlayLoc = player's location (square#) before the game starts
+	private int PlayLoc = 0;
+	private boolean NumDiceRepeat;
+	private boolean Champ;
+	
+
+public players (String NameOfPlayer, int NumOnDice, int PlayLoc, boolean NumDiceRepeat, boolean Champ) {
+	
+	this.NameOfPlayer = NameOfPlayer;
+	this.NumOnDice = NumOnDice;
+	this.PlayLoc = PlayLoc;
+	this.NumDiceRepeat = NumDiceRepeat;
+	this.Champ = Champ;
+	
+}
+
+public String getNameOfPlayer()
+{
+	return NameOfPlayer;
+}
+
+public int getNumOnDice()
+{
+	return NumOnDice;
+}
+
+public void setNumOnDice(int NumOnDice)
+{
+	this.NumOnDice = NumOnDice;
+}
+
+public int getPlayLoc()
+{
+	return PlayLoc;
+}
+
+public boolean isNumDiceRepeat()
+{
+	return NumDiceRepeat;
+}
+
+public void setNumDicRepeat(boolean NumDiceRepeat)
+{
+	this.NumDiceRepeat = NumDiceRepeat;
+}
+
+public void setChampion (boolean Champ)
+{
+	this.Champ = Champ;
+}
+
+public boolean isChampion()
+{
+	return Champ;
+}
+
+/**
+ * A method for the player to move a defined number of squares on the board based
+ * on the number on the dice.
+ * @param the integer p = number on the dice 
+ * */
+public void PlayerMovement (int p)
+{
+	if(PlayLoc + p == 100)
+	{
+		PlayLoc = PlayLoc + p;
+		
+		Champ = true;
+		System.out.println("~ ~" + NameOfPlayer + " rolled the dice and got " + p + " and is now at " + PlayLoc + ".");
+		System.out.println("~ ~" + NameOfPlayer + " is the WINNER!");
+	}
+	
+	else if (PlayLoc + p > 100)
+	{
+		PlayLoc = 100 - (PlayLoc + p -100);
+		System.out.println("~ ~" + NameOfPlayer + " rolled the dice and got " + p + " and is now at " + PlayLoc + " which exceeds the limits of the board.");
+	}
+	
+	else
+	{
+		PlayLoc = PlayLoc + p;
+		System.out.println("~ ~" + NameOfPlayer + " rolled the dice and got " + p + " and is now at " + PlayLoc + ".");
+	}
+}
+
+
+/**
+ * A set method to move the player to a defined position when the player faces a snake's head or a ladder
+ * */
+public void setPlayLoc(int PlayLoc)
+{
+	this.PlayLoc = PlayLoc;
+	
+}
+
+}
