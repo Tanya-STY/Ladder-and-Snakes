@@ -1,13 +1,13 @@
 /**
  * -----------------------------------------------------
- * Assignment 0
+ * Assignment 1
  * Question: Part 2
- * Written by: Fadoua Doghmane ID# and Tanya So Tin Yan ID#40208954
+ * Written by: Fadoua Doghmane ID#40198495 and Tanya So Tin Yan ID#40208954
  * -----------------------------------------------------
- * @author Fadoua Doghmane ID# and Tanya So Tin Yan ID#40208954
+ * @author Fadoua Doghmane ID#40198495 and Tanya So Tin Yan ID#40208954
  * COMP249
- * Assignment    #0
- * Due Date      Friday, February 4, 2022
+ * Assignment    #1
+ * Due Date      Monday, February 7, 2022
  * 
  * General explanation of what the program does: 
  * */
@@ -21,42 +21,83 @@ public class PlayLadderAndSnake {
 		
 
 		
-		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++");
-		System.out.println("++                                             ++");
-		System.out.println("+  WELCOME TO THE BOARD GAME: LADDER AND SNAKE  +");
-		System.out.println("++                                             ++");
-		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++");
-
+		System.out.println("\t+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println("\t++                                                       ++");
+		System.out.println("\t+       WELCOME TO THE BOARD GAME: LADDER AND SNAKE       +");
+		System.out.println("\t+      WRITTEN BY:FADOUA DOGHMANE & TANYA SO TIN YAN      +");
+		System.out.println("\t++                                                       ++");
+		System.out.println("\t+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		Scanner scanner = new Scanner (System.in);
-		System.out.print("\nPlease enter the number of players: ");
-		int NBofPlayers = scanner.nextInt();
 		
-		//nb of players must be between 2 and 4
+		int NBofPlayers = 0;
+		int attempt;
 		
-		while (NBofPlayers !=2 && NBofPlayers !=3 && NBofPlayers !=4)
-		{
-			System.out.println("\nIn order to play Ladder and Snake, there must be at least 2 players and at most 4 players.");
-			System.out.print("\nPlease enter a new number! ");
+		
+			
+
+			System.out.print("\n ~ Please enter the number of players: ");
+			
 			NBofPlayers = scanner.nextInt();
+			
+			attempt = 1;
+		
+			for(attempt = 1; attempt < 4; attempt++)
+			{
+				if(NBofPlayers == 2 || NBofPlayers == 3 || NBofPlayers == 4)
+				{
+					LadderAndSnake play = new LadderAndSnake (NBofPlayers);
+					
+					play.board_map();
+					play.decidOrder(NBofPlayers);
+					play.checkOrder();
+					play.playing_Snk();
+					
+					attempt = 5;
+					
+					}
+				
+				else
+				{
+					System.out.println("\n ~ Bad attempt #" + attempt);
+					System.out.println("\tIn order to play Ladder and Snake, there must be at least" + "\n" + "\t2 players and at most 4 players.");
+					System.out.print("\t~~> Please enter a new number! ");
+					NBofPlayers = scanner.nextInt();
+					
+					if(attempt == 3)
+					{
+						if(NBofPlayers == 2 || NBofPlayers == 3 || NBofPlayers == 4) {
+						LadderAndSnake play = new LadderAndSnake (NBofPlayers);
+						
+						play.board_map();
+						play.decidOrder(NBofPlayers);
+						play.checkOrder();
+						play.playing_Snk();
+						
+						attempt = 5;
+						}
+						
+						else
+						{
+							attempt++;
+							System.out.println("\n ~ Bad attempt #" + attempt);
+							System.out.println("\t You have exhausted all your your chances!");
+						}
+					}
+				}
+					
+			
 		}
-		
-		LadderAndSnake play = new LadderAndSnake (NBofPlayers);
-		
-		play.board_map();
-		play.decidOrder(NBofPlayers);
-		play.checkOder();
-		play.playing_Snk();
-		
+
 		System.out.println();
-		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-		System.out.println("++++                                                                         ++++");
-		System.out.println("++                            THANK YOU FOR PLAYING                            ++");
-		System.out.println("++++                                                                         ++++");
-		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println("\t+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println("\t++++                                                                         ++++");
+		System.out.println("\t++                            THANK YOU FOR PLAYING                            ++");
+		System.out.println("\t++++                                                                         ++++");
+		System.out.println("\t+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		
-		System.out.println("  ___     ___     ___     ___     ___     ___     ___     ___      ");
-		System.out.println(" // \\\\   // \\\\   // \\\\   // \\\\   // \\\\   // \\\\   // \\\\   // \\\\   ");
-		System.out.println("//   \\\\_//   \\\\_//   \\\\_//   \\\\_//   \\\\_//   \\\\_//   \\\\_//   \\@~~");
+		System.out.println("\t  ___     ___     ___     ___     ___     ___     ___     ___     ___     ___     ");
+		System.out.println("\t // \\\\   // \\\\   // \\\\   // \\\\   // \\\\    // \\\\   // \\\\   // \\\\   // \\\\   // \\");
+		System.out.println("\t//   \\\\_//   \\\\_//   \\\\_//   \\\\_//   \\\\__//   \\\\_//   \\\\_//   \\\\_//   \\\\_//   \\@~~");
 		
 		
 		scanner.close();
