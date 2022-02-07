@@ -1,11 +1,12 @@
-/** -----------------------------------------------------
- * Assignment 0
- * Question: Part 1
- * Written by: Fadoua Doghmane ID# and Tanya So Tin Yan ID#40208954
+/**
  * -----------------------------------------------------
- * Names and IDs Fadoua Doghmane ID# and Tanya So Tin Yan ID#40208954
+ * Assignment 1
+ * Question: Part 1 
+ * Written by: Fadoua Doghmane ID#40198495 and Tanya So Tin Yan ID#40208954
+ * -----------------------------------------------------
+ * @author Fadoua Doghmane ID#40198495 and Tanya So Tin Yan ID#40208954
  * COMP249
- * Assignment    #0
+ * Assignment    #1
  * Due Date      Friday, February 4, 2022
  * 
  * General explanation of what the program does: 
@@ -13,13 +14,13 @@
 
 public class board {
 
-  /**
+	private String Player_Name;
+	private int PlayLoc;
+	
+/**
  * @param Player_Name
  * @param PlayLoc = player's location
  * */
-  
-	private String Player_Name;
-	private int PlayLoc;
 	
 	public board (String Player_Name, int PLayLoc)
 	{
