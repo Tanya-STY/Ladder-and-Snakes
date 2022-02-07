@@ -1,12 +1,12 @@
 /**
  * -----------------------------------------------------
- * Assignment 0
- * Question: (include question/part number, if applicable) 
- * Written by: Fadoua Doghmane ID# and Tanya So Tin Yan ID#40208954
+ * Assignment 1
+ * Question: Part 1
+ * Written by: Fadoua Doghmane ID#40198495 and Tanya So Tin Yan ID#40208954
  * -----------------------------------------------------
- * @author Fadoua Doghmane ID# and Tanya So Tin Yan ID#40208954
+ * @author Fadoua Doghmane ID#40198495 and Tanya So Tin Yan ID#40208954
  * COMP249
- * Assignment    #0
+ * Assignment    #1
  * Due Date      Friday, February 4, 2022
  * 
  * General explanation of what the program does: 
@@ -34,6 +34,9 @@ public class players {
  * */
 	
 	private String NameOfPlayer;
+	private String names;
+	
+	String play1, play2, play3, play4;
 	
 	private int NumOnDice;
 	
@@ -47,14 +50,26 @@ public class players {
 	Scanner keyboard = new Scanner (System.in);
 	
 
-public players (String NameOfPlayer, int NumOnDice, int PlayLoc, boolean NumDiceRepeat, boolean Champ) {
+public players (String names, String NameOfPlayer, int NumOnDice, int PlayLoc, boolean NumDiceRepeat, boolean Champ) {
 	
+	this.names = names;
 	this.NameOfPlayer = NameOfPlayer;
-	
 	this.NumOnDice = NumOnDice;
 	this.PlayLoc = PlayLoc;
 	this.NumDiceRepeat = NumDiceRepeat;
 	this.Champ = Champ;
+	
+}
+
+public String getNames()
+{
+	return names;
+}
+
+public void setNames(String names)
+{
+	this.names = names;
+	
 	
 }
 
@@ -89,7 +104,7 @@ public boolean isNumDiceRepeat()
 	return NumDiceRepeat;
 }
 
-public void setNumDicRepeat(boolean NumDiceRepeat)
+public void setNumDiceRepeat(boolean NumDiceRepeat)
 {
 	this.NumDiceRepeat = NumDiceRepeat;
 }
@@ -120,22 +135,26 @@ public void PlayerMovement (int p)
 		PlayLoc = PlayLoc + p;
 		
 		Champ = true;
-		System.out.println("\t~~> " + temp2 + " rolled the dice and got " + p + " and is now at " + PlayLoc + ".");
-		System.out.println("\t~~> " + temp2 + " is the WINNER!");
+		System.out.println("\t~~> " + names + " rolled the dice and got " + p + " and is now at " + PlayLoc + ".");
+		System.out.println("\t***********************************");
+		System.out.println("\t   " + names + " is the WINNER!    ");
+		System.out.println("\t***********************************");
 	}
 	
 	else if (PlayLoc + p > 100)
 	{
 		PlayLoc = 100 - (PlayLoc + p -100);
-		System.out.println("\t~~> " + NameOfPlayer + " rolled the dice and got " + p + " and is now at " + PlayLoc + " which exceeds the limits of the board.");
+		System.out.println("\t~~> " + names + " rolled the dice and got " + p + " and is now at " + PlayLoc + " which exceeds the limits of the board.");
 	}
 	
 	else
 	{
 		PlayLoc = PlayLoc + p;
-		System.out.println("\t~~> " + NameOfPlayer + " rolled the dice and got " + p + " and is now at " + PlayLoc + ".");
+		System.out.println("\t~~> " + names + " rolled the dice and got " + p + " and is now at " + PlayLoc + ".");
 	}
 }
+
+
 
 
 /**
@@ -145,11 +164,7 @@ public void setPlayLoc(int PlayLoc)
 {
 	this.PlayLoc = PlayLoc;
 	
-	/*if (PlayLoc == 100)
-	{
-		Champ = true;
-	System.out.println("WOAH!!!");
-	}*/
+	
 }
 
 }
